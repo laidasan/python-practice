@@ -12,6 +12,78 @@ import talib
 #     writer = csv.writer(csvfile)
 #     writer.writerow(['股票','收盤價','單量'])
 
+#stock 2330
+stock_2330 = twstock.Stock('2330')
+stock_2330_2018_10 = stock_2330.fetch(2018,10)
+stock_2330_2018_10_pd = pd.DataFrame(stock_2330_2018_10)
+stock_2330_2018_10_pd = stock_2330_2018_10_pd.set_index('date')
+
+fig = plt.figure(figsize=(15,10))
+plt.plot(stock_2330_2018_10_pd.close,ls='solid')
+
+# with open('2353-3m-csv.csv',newline='') as df_2353_csv:
+#     rows = csv.reader(df_2353_csv)
+#     df_2353_list = list(rows)
+    # for row in df_2353_list:
+    #     print(row)
+    # date_2353_list =[]
+    # open_2353_list =[] 
+    # high_2353_list =[] 
+    # low_2353_list =[] 
+    # close_2353_list =[]
+    # close_2353_sort=[] 
+    # for row in df_2353_list[3:len(df_2353_list)]:
+        # print(row[0])
+        # date_2353_list.append(row[0])
+        # open_2353_list.append(row[1])
+        # high_2353_list.append(row[2])
+        # low_2353_list.append(row[3])
+        # close_2353_list.append(row[4])
+        # close_2353_sort.append(row[4])
+    # for item in date_2353_list:
+    #     print(item)
+    # date_2353_list.reverse()
+    # open_2353_list.reverse()
+    # high_2353_list.reverse()
+    # low_2353_list.reverse()
+    # close_2353_list.reverse()
+    # close_2353_sort.sort()
+    # date_2353_pd = pd.Series(date_2353_list)
+    # open_2353_pd = pd.Series(open_2353_list)
+    # high_2353_pd = pd.Series(high_2353_list)
+    # low_2353_pd = pd.Series(low_2353_list)
+    # close_2353_pd = pd.Series(close_2353_list)
+    # print(date_2353_list)
+    # print(date_2353_list[0])
+    # print(date_2353_pd)
+    # df_2353_pd_Data = pd.DataFrame({'date':date_2353_pd,'open':open_2353_pd,'high':high_2353_pd,'low':low_2353_pd,'close':close_2353_pd})
+    # df_2353_pd_Data = df_2353_pd_Data.set_index('date')
+    # print(df_2353_pd_Data)
+    # fig = plt.figure(figsize=(15,10))
+    # ax = plt.subplots()
+    # plt.plot(date_2353_list,close_2353_list,ls='solid',color='#ffaa00',label='close')
+    # plt.xticks(range(0,len(df_2353_pd_Data),10))
+    # plt.legend(loc='upper right')
+    # plt.show()
+
+# start = datetime.datetime(2019,5,1)
+# df_2330 = pdr.DataReader('2330.TW','yahoo',start=start)
+# print(df_2330)
+
+
+
+    
+    # print(date_2353_pd)
+    # print(date_2353_pd_Data)
+    # print(df_2353_list[0])
+    # print(df_2353_list[3:8])
+    # pd.Series()
+    # print(df_2353_list[:5])
+# start = datetime.datetime(2019,5,1)
+# df_23xx = pdr.DataReader('2353.TW','yahoo',start=start)
+# print(df_23xx)
+    # for row in df_2353_list:
+    #     print(row)
 # with open('day06-csv.csv',newline='') as csvfile:
 #     rows = csv.reader(csvfile)
 #     print(type(rows))
@@ -187,6 +259,7 @@ mylist4 = list(range(10))
 # stock_6207_2019 = stock_6207.fetch_from(2018,7)
 # stock_6207_2019_pd = pd.DataFrame(stock_6207_2019)
 # stock_6207_2019_pd = stock_6207_2019_pd.set_index('date')
+# print(stock_6207_2019_pd)
 
 #stock_2330
 # stock_2330 = twstock.Stock('2330')
@@ -240,23 +313,23 @@ mylist4 = list(range(10))
 # plt.show()
 
 #df_2357 華碩
-start = datetime.datetime(2018,12,1)
-df_2357 = pdr.DataReader('2357.TW','yahoo',start=start)
-df_2357.index = df_2357.index.format(formatter=lambda x: x.strftime('%Y-%m-%d'))
+# start = datetime.datetime(2018,12,1)
+# df_2357 = pdr.DataReader('2357.TW','yahoo',start=start)
+# df_2357.index = df_2357.index.format(formatter=lambda x: x.strftime('%Y-%m-%d'))
 # print(df_2357)
 # print(len(df_2357.index))
 # print(df_2357.index[::10])
-sma_10 = talib.SMA(np.array(df_2357['Close']),20)
-sma_30 = talib.SMA(np.array(df_2357['Close']),60)
-fig = plt.figure(figsize=(48,8))
-ax = fig.add_subplot(1,1,1)
-ax.set_xticks(range(0,len(df_2357.index),10))
-ax.set_xticklabels(df_2357.index[::10])
-mpf.candlestick2_ochl(ax,df_2357['Open'],df_2357['Close'],df_2357['High'],df_2357['Low'],width=0.6,colorup='r',colordown='g',alpha=0.75)
-ax.plot(sma_10,label='sma_20')
-ax.plot(sma_30,label='sma_60')
-plt.legend(loc='upper right')
-plt.show()
+# sma_10 = talib.SMA(np.array(df_2357['Close']),20)
+# sma_30 = talib.SMA(np.array(df_2357['Close']),60)
+# fig = plt.figure(figsize=(48,8))
+# ax = fig.add_subplot(1,1,1)
+# ax.set_xticks(range(0,len(df_2357.index),10))
+# ax.set_xticklabels(df_2357.index[::10])
+# mpf.candlestick2_ochl(ax,df_2357['Open'],df_2357['Close'],df_2357['High'],df_2357['Low'],width=0.6,colorup='r',colordown='g',alpha=0.75)
+# ax.plot(sma_10,label='sma_20')
+# ax.plot(sma_30,label='sma_60')
+# plt.legend(loc='upper right')
+# plt.show()
 
 #df_2376 技嘉
 # start = datetime.datetime(2019,3,1)
