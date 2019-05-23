@@ -22,6 +22,10 @@ def searchDF(df_name):
     sma_10 = talib.SMA(np.array(df_xxxx['Close']),20)
     sma_30 = talib.SMA(np.array(df_xxxx['Close']),60)
 
+    # 個圖表
+    # ax: 蠟燭
+    # ax2: KD值
+    # ax3: 成交量
     fig = plt.figure(figsize=(30,20))
     # ax = fig.add_subplot(1,1,1)
     ax = fig.add_axes([0.05,0.6,0.9,0.4])
@@ -33,14 +37,17 @@ def searchDF(df_name):
     ax.set_xticklabels(df_xxxx.index[::10])
     mpf.candlestick2_ochl(ax,df_xxxx['Open'],df_xxxx['Close'],df_xxxx['High'],df_xxxx['Low'],width=0.6,colorup='r',colordown='g',alpha=0.75)
 
+    # 均線
     ax.plot(sma_10,label='sma_20')
     ax.plot(sma_30,label='sma_60')
 
+    # KD值
     ax2.plot(df_xxxx['k'],label='K')
     ax2.plot(df_xxxx['d'],label='D')
     ax2.set_xticks(range(0,len(df_xxxx.index),10))
     ax2.set_xticklabels(df_xxxx.index[::10])
 
+    # 成交量
     mpf.volume_overlay(ax3, df_xxxx['Open'], df_xxxx['Close'], df_xxxx['Volume'], colorup='r', colordown='g', width=0.5, alpha=0.8)
     ax3.set_xticks(range(0,len(df_xxxx.index),10))
     ax3.set_xticklabels(df_xxxx.index[::10])
